@@ -2,6 +2,7 @@ class Api::V1::ProductsController < ApiController
   before_action :set_product, only: [:update, :destroy]
   before_action :authenticate_user!
 
+
   def index
     if current_user.admin? || current_user.user?
       @products = Product.all
