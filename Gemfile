@@ -43,7 +43,11 @@ group :development, :test do
   gem "factory_bot_rails"
   gem 'shoulda-matchers', '~> 5.0'
   gem 'rails-controller-testing'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+
 end
+
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
@@ -58,3 +62,7 @@ gem 'sass-rails'
 gem 'devise-jwt'
 gem 'cancancan'
 gem 'faker'
+
+
+
+

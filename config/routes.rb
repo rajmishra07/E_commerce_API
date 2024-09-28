@@ -15,4 +15,8 @@ Rails.application.routes.draw do
       resources :carts, only: [:show]
     end
   end
+
+  # config/routes.rb
+get '/favicon.ico', to: ->(env) { [204, {}, []] }
+
 end

@@ -12,6 +12,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self  
 
+
+    def self.ransackable_associations(auth_object = nil)
+      ["cart", "products"]
+    end
+
+    def self.ransackable_attributes(auth_object = nil)
+      ["created_at", "email", "encrypted_password", "id", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "role", "updated_at"]
+    end
+
+    
+
    def generate_jwt
     # Assuming you're using `Devise::JWT::Denylist` or similar
     JWT.encode({ id: id, exp: 24.hours.from_now.to_i }, Rails.application.secret_key_base)
