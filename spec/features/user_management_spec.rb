@@ -1,9 +1,8 @@
-# spec/features/user_management_spec.rb
 require 'rails_helper'
 
 RSpec.feature "User Management", type: :feature do
   let!(:admin_user) { create(:admin_user) }
-  let!(:user) { create(:user, email: "test@example.com", role: "user") } # Ensure to set the role
+  let!(:user) { create(:user, email: "test@example.com", role: "user") } 
 
   before do
     # Admin login
@@ -16,8 +15,8 @@ RSpec.feature "User Management", type: :feature do
   scenario "Admin can view the list of users" do
     visit admin_users_path
 
-    expect(page).to have_content('Users') # Check if the page contains the 'Users' heading
-    expect(page).to have_content(user.email) # Check if the user email is present
+    expect(page).to have_content('Users') 
+    expect(page).to have_content(user.email) 
   end
 
   scenario "Admin can create a new user" do
@@ -27,13 +26,13 @@ RSpec.feature "User Management", type: :feature do
     fill_in 'user[password]', with: 'password'
     fill_in 'user[password_confirmation]', with: 'password'
 
-    # Debugging output for available role options
+    
     role_select = find('select[name="user[role]"]')
-    options = role_select.all('option').map(&:text)  # Correct way to get options
-    puts "Available role options: #{options.join(', ')}"  # Output available options to console
+    options = role_select.all('option').map(&:text)  
+    puts "Available role options: #{options.join(', ')}" 
 
-    # Ensure the role options are available in the select box
-    select 'user', from: 'user[role]' # Use lowercase to match the defined roles
+   
+    select 'user', from: 'user[role]' 
 
     click_button 'Create User'
 
@@ -46,21 +45,19 @@ RSpec.feature "User Management", type: :feature do
 
   # Fill in required fields
   fill_in 'user[email]', with: 'updated_user@example.com'
-  fill_in 'user[password]', with: 'newpassword'  # Provide a new password
-  fill_in 'user[password_confirmation]', with: 'newpassword'  # Confirm the new password
+  fill_in 'user[password]', with: 'newpassword'  
+  fill_in 'user[password_confirmation]', with: 'newpassword' 
 
   # Debugging output for available role options
   role_select = find('select[name="user[role]"]')
-  options = role_select.all('option').map(&:text)  # Correct way to get options
-  puts "Available role options: #{options.join(', ')}"  # Output available options to console
+  options = role_select.all('option').map(&:text)  
+  puts "Available role options: #{options.join(', ')}"  
 
-  # Ensure the role options are available in the select box
-  select 'admin', from: 'user[role]' # Use lowercase to match the defined roles
+  select 'admin', from: 'user[role]' 
 
   click_button 'Update User'
 
-  # Check for the actual success message
-  expect(page).to have_content('User was successfully updated.') # Adjust this to match the actual success message
+  expect(page).to have_content('User was successfully updated.') 
   expect(page).to have_content('updated_user@example.com')
 end
 

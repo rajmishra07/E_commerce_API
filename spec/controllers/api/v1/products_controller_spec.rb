@@ -1,11 +1,11 @@
 RSpec.describe Api::V1::ProductsController, type: :controller do
-  let(:seller) { create(:user, role: 'seller') }
-  let(:another_seller) { create(:user, role: 'seller') }
-  let!(:product) { create(:product, user: seller) }
-  let!(:other_product) { create(:product, user: another_seller) }
+  let(:vendor) { create(:user, role: 'vendor') }
+  let(:another_vendor) { create(:user, role: 'vendor') }
+  let!(:product) { create(:product, user: vendor) }
+  let!(:other_product) { create(:product, user: another_vendor) }
 
   before do
-    sign_in seller
+    sign_in vendor
   end
   describe "GET #index" do
     context "when the user is an admin" do
@@ -25,7 +25,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
 
   describe "PUT #update" do
-    context "when trying to update another seller's product" do
+    context "when trying to update another vendor's product" do
       it "returns an error" do
         other_user = create(:user)
         other_product = create(:product, user: other_user)
@@ -38,7 +38,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    context "when trying to delete another seller's product" do
+    context "when trying to delete another vendor's product" do
       it "raises an error" do
         other_user = create(:user)
         other_product = create(:product, user: other_user)

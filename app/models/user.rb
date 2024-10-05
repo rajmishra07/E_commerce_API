@@ -4,7 +4,8 @@ class User < ApplicationRecord
   after_create :create_cart
 
   has_one :cart, dependent: :destroy
-  has_many :products, dependent: :destroy  
+  has_many :products, dependent: :destroy 
+   has_many :orders, dependent: :destroy  
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   
@@ -20,8 +21,6 @@ class User < ApplicationRecord
     def self.ransackable_attributes(auth_object = nil)
       ["created_at", "email", "encrypted_password", "id", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "role", "updated_at"]
     end
-
-    
 
    def generate_jwt
     # Assuming you're using `Devise::JWT::Denylist` or similar

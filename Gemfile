@@ -63,6 +63,8 @@ gem 'devise-jwt'
 gem 'cancancan'
 gem 'faker'
 
+gem 'warden'
+
 
 
 

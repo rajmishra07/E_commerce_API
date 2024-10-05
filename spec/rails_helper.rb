@@ -1,8 +1,26 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require 'capybara/rspec'
-
+require 'warden'
 Capybara.javascript_driver = :selenium_chrome
+
+
+
+
+RSpec.configure do |config|
+  # Other configurations...
+
+  # Include Devise test helpers for feature specs
+  config.include Warden::Test::Helpers, type: :feature
+
+end
+
+
+
+
+
+
+
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'

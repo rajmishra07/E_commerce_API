@@ -8,10 +8,10 @@ require 'rails_helper'
       fill_in 'Email', with: admin_user.email
       fill_in 'Password', with: admin_user.password
 
-      # Debugging step to inspect the page before clicking
+      
       save_and_open_page
 
-      click_button 'Login' # Ensure this matches exactly with the button's text
+      click_button 'Login' 
     end
 
     scenario "Admin user can view the list of admin users" do
@@ -27,8 +27,8 @@ require 'rails_helper'
     fill_in 'Email', with: 'new_admin@example.com'
     
     # Update this to a specific field selector
-    fill_in 'admin_user_password', with: 'password'  # Change based on actual ID
-    fill_in 'admin_user_password_confirmation', with: 'password'  # Ensure this matches as well
+    fill_in 'admin_user_password', with: 'password'  
+    fill_in 'admin_user_password_confirmation', with: 'password'  
 
     click_button 'Create Admin user'
 
