@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
 
-  # Association tests
+ 
   it { should have_many(:products).dependent(:destroy) }
   it { should have_one(:cart).dependent(:destroy) }
 
-  # Test for cart_items through cart
+
   it 'should have many cart_items through cart' do
     cart = create(:cart, user: user)
     product = create(:product, user: user)
